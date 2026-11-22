@@ -42,13 +42,6 @@ processResources {
     // Bundle the charm gun pack; CharmPackExport extracts it to tacz/taczcharm on startup.
     from('pack/taczcharm') {
         into 'taczcharm_pack'
-        // -PpublicBuild: 공개 배포판(모드린스)에서 거꾸로 A 태그(악어 허락 전)·시험 참 빼기
-        if (project.hasProperty('publicBuild')) {
-            exclude '**/*akeo_tag*', '**/*test_tag*'
-            filesMatching('**/lang/*.json') {
-                filter { String line -> (line.contains('akeo_tag') || line.contains('test_tag')) ? null : line }
-            }
-        }
     }
     filesMatching('fabric.mod.json') {
         expand 'version': project.version

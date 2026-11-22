@@ -1,4 +1,4 @@
-# 빌드 결과·캐시
+# Build output and caches
 .gradle/
 build/
 out/
@@ -7,22 +7,5 @@ run/
 __pycache__/
 *.pyc
 
-# TACZ jar 등 남의 라이브러리 (각자 받아서 libs/ 에 넣기)
+# TaCZ: Refabricated jar for compiling (download it yourself, see README)
 libs/
-
-# 시험 덤프·배포 묶음
-tools/harness/charm_dump*.txt
-tools/harness/charm_harness.txt
-tools/charm_selftest_*.txt
-모드린스/*.zip
-
-# 개인 작업 메모
-CLAUDE.md
-
-# 모드린스 올리기 스크립트 (개인 경로·토큰 위치)
-모드린스/*.ps1
-모드린스/*.jar
-
-# 공개 저장소에서 뺌: 거꾸로 A 태그(허락 전)·시험 참
-**/*akeo_tag*
-**/*test_tag*

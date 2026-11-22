@@ -55,7 +55,7 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 ## Building from source
 
 1. Put `tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar` (from the TaCZ: Refabricated Modrinth page) in `libs/`.
-2. Run `gradlew build -PpublicBuild` (Java 21). The jar is written to `build/libs/`.
+2. Run `gradlew build` (Java 21). The jar is written to `build/libs/`.
 
 ## Models
 

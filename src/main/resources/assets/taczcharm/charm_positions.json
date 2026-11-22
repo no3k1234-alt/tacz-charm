@@ -1,0 +1,107 @@
+{
+  "gunedit:hk_mp7a1_1": [
+    -0.6,
+    0.3,
+    0.1
+  ],
+  "ronmc:raider_display": [
+    10.5,
+    1.0,
+    -2.0
+  ],
+  "tacz:ai_awp_display": [
+    2.5,
+    0.0,
+    0.0
+  ],
+  "tacz:glock_17_display": [
+    0.5,
+    0.0,
+    0.0
+  ],
+  "tacz:hk416d_display": [
+    3.5,
+    0.0,
+    0.0
+  ],
+  "tacz:hm50b_display": [
+    6.0,
+    0.0,
+    0.0
+  ],
+  "tacz:lonetrail_display": [
+    2.0,
+    0.0,
+    0.0
+  ],
+  "tacz:m107_display": [
+    -0.5,
+    0.0,
+    0.0
+  ],
+  "tacz:m249_display": [
+    1.0,
+    0.0,
+    0.0
+  ],
+  "tacz:m700_display": [
+    1.5,
+    0.0,
+    0.0
+  ],
+  "tacz:m95_display": [
+    2.4,
+    0.0,
+    0.0
+  ],
+  "tacz:m9a4_display": [
+    -1.0,
+    0.0,
+    -0.2
+  ],
+  "tacz:mrad_display": [
+    2.1,
+    0.0,
+    0.0
+  ],
+  "tacz:rpg7_display": [
+    19.7,
+    -0.7,
+    0.0
+  ],
+  "tacz:rpk_display": [
+    -0.5,
+    0.0,
+    0.0
+  ],
+  "tacz:sks_tactical_display": [
+    4.5,
+    0.0,
+    0.0
+  ],
+  "tacz:spr15hb_display": [
+    3.0,
+    0.0,
+    0.0
+  ],
+  "tacz:svd_display": [
+    -0.1,
+    0.0,
+    0.0
+  ],
+  "tacz:taurus500_display": [
+    0.3,
+    0.0,
+    0.0
+  ],
+  "tacz:timeless50_display": [
+    1.0,
+    0.0,
+    0.0
+  ],
+  "tacz:vector45_display": [
+    4.5,
+    0.0,
+    0.0
+  ]
+}

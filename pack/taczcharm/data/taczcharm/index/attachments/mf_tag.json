@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.mf_tag",
+  "display": "taczcharm:mf_tag_display",
+  "data": "taczcharm:mf_tag_data",
+  "type": "charm",
+  "sort": 2
+}

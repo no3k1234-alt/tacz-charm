@@ -1,0 +1,77 @@
+// TaczCharm: Fabric 1.21.1 addon for TACZ that adds a charm attachment slot.
+// Gun models without a charm position get one inserted at load time.
+plugins {
+    id 'fabric-loom' version '1.17.21'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = 'com.markwarfare'
+
+base {
+    archivesName = 'TaczCharm'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        'taczcharm' {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modCompileOnly files('libs/tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filteringCharset = 'UTF-8'
+    // Bundle the charm gun pack; CharmPackExport extracts it to tacz/taczcharm on startup.
+    from('pack/taczcharm') {
+        into 'taczcharm_pack'
+        // -PpublicBuild: 공개 배포판(모드린스)에서 거꾸로 A 태그(악어 허락 전)·시험 참 빼기
+        if (project.hasProperty('publicBuild')) {
+            exclude '**/*akeo_tag*', '**/*test_tag*'
+            filesMatching('**/lang/*.json') {
+                filter { String line -> (line.contains('akeo_tag') || line.contains('test_tag')) ? null : line }
+            }
+        }
+    }
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'taczcharm'
+            from components.java
+        }
+    }
+}
+
+jar {
+    // Ship license texts and copyright notice inside the jar (GPL-3.0).
+    from('LICENSE') { rename { 'LICENSE_taczcharm' } }
+    from('COPYRIGHT.txt') { rename { 'COPYRIGHT_taczcharm.txt' } }
+    from('LICENSE-ASSETS') { rename { 'LICENSE-ASSETS_taczcharm' } }
+}

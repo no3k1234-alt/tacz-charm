@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.charm_mount_bar",
+  "display": "taczcharm:charm_mount_bar_display",
+  "data": "taczcharm:charm_mount_bar_data",
+  "type": "charm",
+  "sort": 99,
+  "hidden": true
+}

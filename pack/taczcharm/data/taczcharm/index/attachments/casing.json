@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.casing",
+  "display": "taczcharm:casing_display",
+  "data": "taczcharm:casing_data",
+  "type": "charm",
+  "sort": 6
+}

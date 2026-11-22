@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.cross",
+  "display": "taczcharm:cross_display",
+  "data": "taczcharm:cross_data",
+  "type": "charm",
+  "sort": 5
+}

@@ -1,0 +1,5 @@
+{
+  "slot": "taczcharm:attachment/slot/test_tag",
+  "model": "taczcharm:attachment/charm_mount_geo",
+  "texture": "taczcharm:attachment/uv/charm_mount"
+}

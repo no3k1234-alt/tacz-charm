@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "taczcharm",
+  "version": "${version}",
+  "name": "TaCZ: Charm",
+  "description": "Adds a Charm attachment slot to TACZ guns, with swinging keychain charms. / TACZ 총에 참(키링) 부착물 칸을 넣습니다.",
+  "authors": ["ToMoNo403"],
+  "contact": {},
+  "license": ["GPL-3.0-only", "CC-BY-NC-SA-4.0"],
+  "icon": "assets/taczcharm/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.markwarfare.charm.TaczCharm"],
+    "client": ["com.markwarfare.charm.client.TaczCharmClient"]
+  },
+  "mixins": [
+    "taczcharm.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "tacz": "*"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.charm_mount_ring",
+  "display": "taczcharm:charm_mount_ring_display",
+  "data": "taczcharm:charm_mount_ring_data",
+  "type": "charm",
+  "sort": 99,
+  "hidden": true
+}

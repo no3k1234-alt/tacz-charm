@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.charm_mount_screw",
+  "display": "taczcharm:charm_mount_screw_display",
+  "data": "taczcharm:charm_mount_screw_data",
+  "type": "charm",
+  "sort": 99,
+  "hidden": true
+}

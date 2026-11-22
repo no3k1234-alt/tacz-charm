@@ -1,0 +1,41 @@
+총기 참 (TaczCharm) — TACZ 총에 다는 참(키링) 부착물 애드온 (패브릭 1.21.1)
+Copyright (C) 2026 ToMoNo403(지나가는잉여)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, version 3 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program (see the LICENSE file).  If not, see
+<https://www.gnu.org/licenses/>.
+
+----------------------------------------------------------------------
+[한국어 안내]
+이 모드의 저작권자는 ToMoNo403(지나가는잉여)입니다.
+GNU 일반 공중 사용 허가서 버전 3(GPL-3, LICENSE 파일)에 따라 누구나 쓰고, 고치고, 나눠 줄 수 있습니다.
+나눠 줄 때는 소스 코드를 함께 제공하고, 같은 GPL-3로 배포하며, 이 저작권 표기를 지우지 않아야 합니다.
+이 프로그램은 아무런 보증 없이 제공됩니다.
+
+참 모델·텍스처(MF 태그, 마운트 등)와 개조 화면 참 칸 아이콘은 직접 만든 것입니다.
+
+[그림·모델 라이선스 — 코드와 다름]
+아래 파일은 GPL-3가 아니라 CC BY-NC-SA 4.0(크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 4.0,
+LICENSE-ASSETS 파일)을 따릅니다.
+  - pack/ 폴더 전체 (참 모델 geo, 텍스처, 표시 설정)
+  - src/**/assets/**/textures/ 아래의 그림
+  - 블록벤치 원본(.bbmodel)
+출처(ToMoNo403(지나가는잉여), 총기 참)를 밝히면 쓰고 고칠 수 있지만, 돈을 받거나 상업적으로 쓸 수 없고,
+고친 것은 같은 CC BY-NC-SA 4.0으로만 나눠 줄 수 있습니다. 그 밖의 파일(코드, 설정 json, 언어 파일)은 GPL-3입니다.
+Models, textures and icons listed above are licensed under CC BY-NC-SA 4.0
+(https://creativecommons.org/licenses/by-nc-sa/4.0/), not GPL-3. Everything else is GPL-3.
+TACZ의 그림·모델 파일은 이 모드에 들어 있지 않습니다 (못 다는 칸 아이콘은 게임에서 TACZ 그림을 그대로 불러 씀).
+
+[함께 쓰는 다른 저작물]
+- TACZ Refabricated — TACZ 제작진·Refabricated 이식자 (코드 GPL-3). 이 모드는 TACZ 안에 믹스인으로 끼워 동작하며 TACZ가 따로 있어야 합니다.
+- Fabric API — FabricMC (Apache-2.0)
+- Minecraft — Mojang Studios. 이 모드는 Mojang·Microsoft의 공식 제품이 아니며 승인받지 않았습니다.

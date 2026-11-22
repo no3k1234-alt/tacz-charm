@@ -1,0 +1,19 @@
+{
+  "tooltip.tacz.attachment.charm": "Charm",
+  "tacz.type.charm.name": "Charm",
+  "itemGroup.taczcharm": "Gun Charms",
+  "taczcharm.command.hold_gun": "[Charm] Hold a gun in your main hand first.",
+  "taczcharm.editor.title": "Charm Position",
+  "taczcharm.editor.back": "Back",
+  "taczcharm.editor.forward": "Forward",
+  "taczcharm.editor.down": "Down",
+  "taczcharm.editor.up": "Up",
+  "taczcharm.editor.in": "In",
+  "taczcharm.editor.out": "Out",
+  "taczcharm.editor.reset": "Reset",
+  "taczcharm.editor.done": "Done",
+  "taczcharm.editor.rail_value": "Along rail %s",
+  "taczcharm.editor.rail_keys": "←→ · Shift = fine",
+  "taczcharm.editor.value": "Fwd %s  Up %s  Out %s",
+  "taczcharm.editor.keys": "Arrows · PgUp/PgDn · Shift = fine"
+}

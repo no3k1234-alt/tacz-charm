@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.dogtag",
+  "display": "taczcharm:dogtag_display",
+  "data": "taczcharm:dogtag_data",
+  "type": "charm",
+  "sort": 3
+}

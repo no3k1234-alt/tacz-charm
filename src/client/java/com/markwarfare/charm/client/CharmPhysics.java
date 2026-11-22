@@ -24,16 +24,16 @@ public final class CharmPhysics {
     // Fraction of each frame's view rotation applied to the chain instantly (inertia left behind in the world).
     // Kept at 0: instant rotation made the chain snap sideways on fast flicks. View turns are fed in as a
     // smooth force instead (TURN_*).
-    private static final double ROTATION_INERTIA = Double.parseDouble(System.getProperty("taczcharm.turnInertia", "0"));
+    private static final double ROTATION_INERTIA = 0;
     // View turn -> force. TURN_ARM is the anchor offset from the eye (screen axes, m). TURN_SMOOTH filters the
     // angular velocity (s), TURN_DRAG_TAU is the velocity drag time (s), the gains weight the angular
     // acceleration and velocity terms, MAX_TURN caps the result (m/s²).
     private static final Vector3d TURN_ARM = new Vector3d(0.25, -0.2, -0.55);
     private static final double TURN_SMOOTH = 0.05;
     private static final double TURN_DRAG_TAU = 0.25;
-    private static final double TURN_ACC_GAIN = Double.parseDouble(System.getProperty("taczcharm.turnAccGain", "0.12"));
-    private static final double TURN_VEL_GAIN = Double.parseDouble(System.getProperty("taczcharm.turnVelGain", "0.45"));
-    private static final double MAX_TURN = Double.parseDouble(System.getProperty("taczcharm.maxTurn", "8"));
+    private static final double TURN_ACC_GAIN = 0.12;
+    private static final double TURN_VEL_GAIN = 0.45;
+    private static final double MAX_TURN = 8;
     private static final Vector3d turnVel = new Vector3d();
     private static final Vector3d lastTurnVel = new Vector3d();
     // How strongly anchor acceleration pushes the charm.

@@ -5,7 +5,6 @@ import com.markwarfare.charm.client.CharmLinks;
 import com.markwarfare.charm.client.CharmOffsets;
 import com.markwarfare.charm.client.CharmPhysics;
 import com.markwarfare.charm.client.CharmPivots;
-import com.markwarfare.charm.client.CharmTour;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -83,8 +82,7 @@ public abstract class AttachmentRenderMixin {
         if (!TaczCharm.isCharm(this.type)) {
             return;
         }
-        // Keep the charm straight during measurement so every shot has the same shape.
-        boolean swing = transformType.firstPerson() && (!CharmTour.running() || CharmTour.plain());
+        boolean swing = transformType.firstPerson();
         // Gun body boxes and ring size go to the physics so the charm slides along the ring
         // without clipping through the gun.
         java.util.List<com.markwarfare.charm.client.CharmGeom.Obb> taczcharm$wall = this.taczcharm$wallOf();
@@ -105,14 +103,11 @@ public abstract class AttachmentRenderMixin {
         CharmPivots.place(this.bedrockGunModel, CharmOffsets.key(this.bedrockGunModel.getCurrentGunItem()));
         poseStack.pushPose();
         this.taczcharm$pushed = true;
-        if (CharmTour.hideCharm) {
-            poseStack.translate(0, -10000, 0);
-        }
         CharmOffsets.apply(poseStack, this.bedrockGunModel.getCurrentGunItem(), taczcharm$wall != null);
         // Draw the mount fixed at the ring hole; only the charm below it swings.
         // No charm attached means no mount either.
         net.minecraft.world.item.ItemStack taqItem = this.bedrockGunModel.getCurrentAttachmentItem().get(this.type);
-        if (!CharmTour.hideCharm && taqItem != null && !taqItem.isEmpty()) {
+        if (taqItem != null && !taqItem.isEmpty()) {
             final org.joml.Matrix4f mPose = new org.joml.Matrix4f(poseStack.last().pose());
             final org.joml.Matrix3f mNormal = new org.joml.Matrix3f(poseStack.last().normal());
             final net.minecraft.world.item.ItemStack gunItem = this.bedrockGunModel.getCurrentGunItem();
@@ -121,16 +116,12 @@ public abstract class AttachmentRenderMixin {
             // ring hole at the origin makes the mount fit the rail exactly.
             com.tacz.guns.client.resource.pojo.model.BonesItem scaleBone = this.bedrockGunModel.getBone(com.markwarfare.charm.client.CharmNodes.MOUNT_SCALE);
             final float k = scaleBone != null && scaleBone.getPivot() != null ? scaleBone.getPivot().get(0) : 0.42f;
-            CharmTour.logMount(CharmOffsets.key(gunItem), k, 0, 0, scaleBone != null);
             this.bedrockGunModel.delegateRender((ps, vb, tt, l, o) -> {
                 for (int part = 0; part < 3; part++) {
                     PoseStack p2 = new PoseStack();
                     p2.last().pose().mul(mPose);
                     p2.last().normal().mul(mNormal);
                     p2.scale(k, k, k);
-                    if (Boolean.getBoolean("taczcharm.mountFlip")) {
-                        p2.mulPose(com.mojang.math.Axis.YP.rotationDegrees(180));
-                    }
                     // Bar and screws stay at rail width so they don't stick out past the rail.
                     // Only the ring (part 0) is enlarged, about the ring hole.
                     if (part == 0) {
@@ -141,13 +132,6 @@ public abstract class AttachmentRenderMixin {
                 }
             });
         }
-        // In first person, push the charm out and up from the gun. Hanging at barrel height it gets
-        // buried between the gun and the left hand at the bottom of the screen.
-        if (transformType.firstPerson()) {
-            float[] o = CharmTour.FIRST_PERSON_OFFSET;
-            poseStack.translate(o[0] / 16F, o[1] / 16F, o[2] / 16F);
-        }
-        CharmTour.logPose(CharmOffsets.key(this.bedrockGunModel.getCurrentGunItem()), poseStack.last().pose(), transformType);
         // Attach point is the center of the charm's loop wire inside the mount hole. When swinging it
         // slides around the hole; otherwise it sits at the bottom. y is flipped from model json to render space.
         if (taqMount) {
@@ -157,14 +141,6 @@ public abstract class AttachmentRenderMixin {
         }
         if (swing) {
             poseStack.mulPose(CharmPhysics.rotation(0));
-        }
-        // The gun looks large in first person and the charm gets lost, so scale it up about the ring.
-        if (transformType.firstPerson()) {
-            // The tag faces (+/-x) point along the barrel and look edge-on, so yaw around the hanging
-            // axis to face the camera.
-            poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(CharmTour.FIRST_PERSON_YAW));
-            float s = CharmTour.FIRST_PERSON_SCALE;
-            poseStack.scale(s, s, s);
         }
         // Shift the charm model so its measured loop wire center lands on the attach point.
         if (taqMount) {

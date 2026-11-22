@@ -48,3 +48,16 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 - TACZ 제작진과 관계없는 비공식 애드온입니다.
 - 조준경을 못 다는 총은 참도 못 답니다. 조준경은 달 수 있지만 참은 막아 둔 총: 윈체스터 1866, 스프링필드 1873, 더블배럴 산탄총(롱·숏), Kar98k
 - 라이선스: 코드 GPL-3.0-only, 참 모델·텍스처·아이콘 CC BY-NC-SA 4.0(LICENSE-ASSETS). 그림은 모두 직접 만들었고 TACZ 자료는 들어 있지 않습니다. 소스 코드는 버전마다 같이 올려 둡니다.
+
+
+---
+
+## Building from source
+
+1. Put `tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar` (from the TaCZ: Refabricated Modrinth page) in `libs/`.
+2. Run `gradlew build -PpublicBuild` (Java 21). The jar is written to `build/libs/`.
+
+## Models
+
+`blockbench/` holds the Blockbench source files of the charms and the rail mount (CC BY-NC-SA 4.0).
+`charm_dogtag.bbmodel` is the full 3D original; `charm_dogtag_bake.bbmodel` is the low-block version used in game, with the relief baked into the texture (see `blockbench/images/dogtag_bake_comparison.png`).

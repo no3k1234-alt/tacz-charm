@@ -141,7 +141,7 @@ public final class CharmChain {
     }
 
     // Upper bend limit in degrees.
-    static final double MAX_BEND_DEG = Double.parseDouble(System.getProperty("taczcharm.maxBend", "90"));
+    static final double MAX_BEND_DEG = 90;
 
     /** The mount ring, already multiplied by the mount scale. wireZ is the ring wire's front-to-back thickness. */
     public record Ring(Vector3d center, double innerRadius, double wireZ, boolean measured) {
@@ -265,10 +265,10 @@ public final class CharmChain {
     // and around tag corners. Greedily merges the pair with the least waste (union volume minus both volumes).
     // Merging continues while waste is at most WASTE of the union volume, and past that only while there are
     // more than MAX_BOXES boxes.
-    static final int MAX_BOXES = Integer.getInteger("taczcharm.maxBoxes", 6);
-    static final double WASTE = Double.parseDouble(System.getProperty("taczcharm.boxWaste", "0.2"));
+    static final int MAX_BOXES = 6;
+    static final double WASTE = 0.2;
     // Minimum collision box half-thickness (px), so a very thin chain wire cannot skip through a gun cube in one step.
-    static final double MIN_HALF = Double.parseDouble(System.getProperty("taczcharm.minHalf", "0.012"));
+    static final double MIN_HALF = 0.012;
 
     static List<double[]> cluster(List<Obb> cubes) {
         List<double[]> b = new ArrayList<>();
@@ -407,19 +407,19 @@ public final class CharmChain {
     private static final double ATTACH_RIM_FRICTION = 0.02;
     // Velocity damping (1/s). Higher values (3.5) made the chain look stiff; lower values let it clip
     // through the gun more often when shaken hard.
-    private static final double DAMP = Double.parseDouble(System.getProperty("taczcharm.damp", "2.5"));
+    private static final double DAMP = 2.5;
     // Segment mass is its base (length or box volume, see MASS_BY_LENGTH) times TAG_MASS for the last segment
     // (the tag) or LINK_MASS for chain links. Each point gets half of each adjacent segment's mass.
     // Distance and bend corrections are split by inverse mass, so the light chain bends to follow the heavy tag.
-    private static final double TAG_MASS = Double.parseDouble(System.getProperty("taczcharm.tagMass", "4"));
-    private static final double LINK_MASS = Double.parseDouble(System.getProperty("taczcharm.linkMass", "0.5"));
+    private static final double TAG_MASS = 4;
+    private static final double LINK_MASS = 0.5;
     // Mass basis: length by default, or box volume with massMode=volume. By volume a small chain link is about
     // 1/10000 of the tag and ends up nearly massless.
-    private static final boolean MASS_BY_LENGTH = !"volume".equals(System.getProperty("taczcharm.massMode", "length"));
+    private static final boolean MASS_BY_LENGTH = true;
     // Inverse mass per point. 0 for the hanging point, which is driven by stepAttach instead.
     private double[] invMass = new double[0];
     private double[] mass = new double[0];
-    private static final int ITER = Integer.getInteger("taczcharm.iter", 10);
+    private static final int ITER = 10;
     // Gap kept between boxes (px) so faces don't flicker.
     private static final double MARGIN = 0.02;
     // Max push per correction (px). Iterations get the point out gradually; pushing all at once made it jump.
@@ -430,9 +430,9 @@ public final class CharmChain {
     private double[] pushUsed = new double[0];
     private Vector3d[] snap = new Vector3d[0];
     private final Vector3d snapAttach = new Vector3d();
-    // Off by default (enable with -Dtaczcharm.guard=true). It slightly reduces jitter at rest but makes
+    // Off. It slightly reduces jitter at rest but makes
     // clipping worse when the gun is shaken.
-    private static final boolean GUARD = Boolean.getBoolean("taczcharm.guard");
+    private static final boolean GUARD = false;
     // "At rest" test: max rate of change of the pull acceleration (px/s³) and how long it must hold (s).
     private static final double CALM_ACC = 50;
     private static final double CALM_SECONDS = 0.3;
@@ -440,15 +440,15 @@ public final class CharmChain {
     private final Vector3d lastAcc = new Vector3d();
     // Effectively off by default. A small budget (0.06 px) almost removes jitter at rest, but clipping during
     // hard shakes gets much worse.
-    private static final double STEP_PUSH_MAX = Double.parseDouble(System.getProperty("taczcharm.stepPush", "1000"));
+    private static final double STEP_PUSH_MAX = 1000;
     // Energy debt (px²/s², masses normalized to average 1). Capped, because a large debt would keep the chain
     // from moving even when shaken.
     private double energyDebt;
-    private static final double DEBT_MAX = Double.parseDouble(System.getProperty("taczcharm.debtMax", "200"));
+    private static final double DEBT_MAX = 200;
     // Static and kinetic friction, scaled by contact depth. Kept low for metal on metal: higher values (0.5/0.3)
     // let a tag resting on a rail hold against the chain's pull instead of sliding off.
-    private static final double MU_STATIC = Double.parseDouble(System.getProperty("taczcharm.muStatic", "0.15"));
-    private static final double MU_KINETIC = Double.parseDouble(System.getProperty("taczcharm.muKinetic", "0.1"));
+    private static final double MU_STATIC = 0.15;
+    private static final double MU_KINETIC = 0.1;
 
     /** Sets the charm, mount ring, and collision cubes. Re-hangs the chain if any of them changed. */
     public void set(Charm charm, Ring ring, List<Obb> wall) {
@@ -713,7 +713,7 @@ public final class CharmChain {
     }
 
     // Max tilt of the charm ring toward the mount wire direction, in degrees. Past this the two rings would intersect.
-    private static final double RING_TILT_DEG = Double.parseDouble(System.getProperty("taczcharm.ringTilt", "25"));
+    private static final double RING_TILT_DEG = 25;
 
     // Direction of the mount wire at the hanging point: the tangent of the ring circle in the xy plane.
     private Vector3d wireTangent(Vector3d at) {

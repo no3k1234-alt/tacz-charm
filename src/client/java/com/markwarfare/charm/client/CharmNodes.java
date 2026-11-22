@@ -90,7 +90,7 @@ public final class CharmNodes {
     public static final float MOUNT_BAR_BOTTOM = 0.18f;
     public static final float MOUNT_RING_OUT = 0.4f;
     // How far behind scope_pos, toward the stock (px).
-    public static final float MOUNT_BEHIND_SCOPE = Float.parseFloat(System.getProperty("taczcharm.mountBehind", "1.0"));
+    public static final float MOUNT_BEHIND_SCOPE = 1.0f;
 
     // The charm hangs from a ring on a "charm mount" clamped across the top rail, just behind the scope.
     // Returns {ringX, ringY, z, farEdgeX, scale}, or null when there is no scope_pos (falls back to charmPivot).
@@ -111,47 +111,42 @@ public final class CharmNodes {
         // Find the rear end of the rail: walk from the scope toward the stock in 0.1 steps and keep the last
         // point where the rail top stays at the same height.
         float z;
-        String forceBehind = System.getProperty("taczcharm.mountBehind");
-        if (forceBehind != null) {
-            z = scope[2] + dir * Float.parseFloat(forceBehind);
-        } else {
-            float base = Float.NaN;
-            railBone = null;
-            for (float d = 0; d <= 2.0f && Float.isNaN(base); d += 0.1f) {
-                base = topAt(byName, scope[2] + dir * d, scope[1]);
-            }
-            // The rail is the bone holding the topmost cube at the scope. Only search within that bone, otherwise
-            // on the AK the walk ran past the rail onto rear receiver parts and the mount floated in the air.
-            final String rail = lastTopBone;
-            railBone = rail;
-            float last = scope[2];
-            if (!Float.isNaN(base)) {
-                for (float d = 0; d <= 16f; d += 0.1f) {
-                    float t = topAt(byName, scope[2] + dir * d, scope[1]);
-                    if (!Float.isNaN(t) && Math.abs(t - base) <= 0.06f) {
-                        last = scope[2] + dir * d;
-                    } else if (d > 0.5f && (Float.isNaN(t) || Math.abs(t - base) > 0.06f)) {
-                        // Stop at a gap longer than 0.3. Short gaps between rail slots are skipped.
-                        float t2 = topAt(byName, scope[2] + dir * (d + 0.3f), scope[1]);
-                        if (Float.isNaN(t2) || Math.abs(t2 - base) > 0.06f) {
-                            break;
-                        }
+        float base = Float.NaN;
+        railBone = null;
+        for (float d = 0; d <= 2.0f && Float.isNaN(base); d += 0.1f) {
+            base = topAt(byName, scope[2] + dir * d, scope[1]);
+        }
+        // The rail is the bone holding the topmost cube at the scope. Only search within that bone, otherwise
+        // on the AK the walk ran past the rail onto rear receiver parts and the mount floated in the air.
+        final String rail = lastTopBone;
+        railBone = rail;
+        float last = scope[2];
+        if (!Float.isNaN(base)) {
+            for (float d = 0; d <= 16f; d += 0.1f) {
+                float t = topAt(byName, scope[2] + dir * d, scope[1]);
+                if (!Float.isNaN(t) && Math.abs(t - base) <= 0.06f) {
+                    last = scope[2] + dir * d;
+                } else if (d > 0.5f && (Float.isNaN(t) || Math.abs(t - base) > 0.06f)) {
+                    // Stop at a gap longer than 0.3. Short gaps between rail slots are skipped.
+                    float t2 = topAt(byName, scope[2] + dir * (d + 0.3f), scope[1]);
+                    if (Float.isNaN(t2) || Math.abs(t2 - base) > 0.06f) {
+                        break;
                     }
                 }
             }
-            // The bar is 0.3 wide: back off half its width plus a little from the rear end.
-            z = last - dir * 0.2f;
-            railBone = null;
-            // A raised block at the rear of the rail (folded rear sight etc.) hides the mount in first person
-            // on guns like the SCAR, M4, HK and SVD. Move forward past it, then MOUNT_CLEAR further.
-            if (!Float.isNaN(base)) {
-                float start = z;
-                for (int n = 0; n < 120 && blockedAbove(byName, z, base, rail); n++) {
-                    z -= dir * 0.1f;
-                }
-                if (z != start) {
-                    z -= dir * MOUNT_CLEAR;
-                }
+        }
+        // The bar is 0.3 wide: back off half its width plus a little from the rear end.
+        z = last - dir * 0.2f;
+        railBone = null;
+        // A raised block at the rear of the rail (folded rear sight etc.) hides the mount in first person
+        // on guns like the SCAR, M4, HK and SVD. Move forward past it, then MOUNT_CLEAR further.
+        if (!Float.isNaN(base)) {
+            float start = z;
+            for (int n = 0; n < 120 && blockedAbove(byName, z, base, rail); n++) {
+                z -= dir * 0.1f;
+            }
+            if (z != start) {
+                z -= dir * MOUNT_CLEAR;
             }
         }
         // Rail top: highest top face of a body cube that spans this z and covers the centerline (x ~ 0).
@@ -207,19 +202,18 @@ public final class CharmNodes {
             float k = mountScale(w);
             float half = w / 2;
             float spare = (1.8f * k - w) / 2;
-            String forceX = System.getProperty("taczcharm.mountX");
             // Ring sits just past the rail's +x end (the side facing the player in first person); the bar spans
             // back to scope x - half. AttachmentRenderMixin rotates the mount model 180° about y so the bar extends along +x.
-            float rx = forceX != null ? Float.parseFloat(forceX) : scope[0] + half + MOUNT_RING_OUT * k + spare;
+            float rx = scope[0] + half + MOUNT_RING_OUT * k + spare;
             return new float[]{rx, scope[1] + MOUNT_BAR_BOTTOM * k, z, scope[0] - half, k};
         }
     }
 
 
     // Bar length as a multiple of rail width. Larger values make the bar stick out past the rail.
-    public static final float MOUNT_SIZE = Float.parseFloat(System.getProperty("taczcharm.mountSize", "1.0"));
+    public static final float MOUNT_SIZE = 1.0f;
     // Extra scale for the ring only, around the ring hole.
-    public static final float RING_SIZE = Float.parseFloat(System.getProperty("taczcharm.ringSize", "1.3"));
+    public static final float RING_SIZE = 1.3f;
 
     /**
      * Mount scale for a rail width. The model's clamp span (inner lip at -0.4 from the ring to the inner face
@@ -230,7 +224,7 @@ public final class CharmNodes {
     }
 
     // Extra gap (px) kept in front of a blocking cube after moving past it.
-    public static final float MOUNT_CLEAR = Float.parseFloat(System.getProperty("taczcharm.mountClear", "1.0"));
+    public static final float MOUNT_CLEAR = 1.0f;
 
     // True if a cube outside the rail bone, within ±0.35 of z, rises more than 0.15 above the rail top.
     private static boolean blockedAbove(Map<String, BonesItem> byName, float z, float base, String railName) {

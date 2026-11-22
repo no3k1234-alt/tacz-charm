@@ -22,7 +22,7 @@ Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your
 ## Notes
 - Not affiliated with or endorsed by the TACZ team.
 - Guns that cannot take a scope cannot take a charm either. These also cannot take a charm even though they take a scope: Winchester 1866, Springfield 1873, Double-barrel shotguns (long/short), Kar98k.
-- License: code GPL-3.0-only, charm models/textures/icons CC BY-NC-SA 4.0 (see LICENSE-ASSETS). All charm art was made for this mod; no TACZ assets are included. Source code is attached to each version.
+- License: see [License](#license) below. All charm art was made for this mod; no TACZ assets are included. Source code is attached to each version.
 
 ---
 
@@ -61,3 +61,15 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 
 `blockbench/` holds the Blockbench source files of the charms and the rail mount (CC BY-NC-SA 4.0).
 `charm_dogtag.bbmodel` is the full 3D original; `charm_dogtag_bake.bbmodel` is the low-block version used in game, with the relief baked into the texture (see `blockbench/images/dogtag_bake_comparison.png`).
+
+## License
+
+| Part | License |
+|---|---|
+| Source code | [GPL-3.0-only](LICENSE) |
+| Charm models, textures, icons and Blockbench files (`pack/`, `blockbench/`, images under `src/**/textures/`) | [CC BY-NC-SA 4.0](LICENSE-ASSETS) |
+
+See [COPYRIGHT.txt](COPYRIGHT.txt) for details.
+코드는 GPL-3.0-only, 참 모델·텍스처·아이콘·블록벤치 파일은 CC BY-NC-SA 4.0입니다(출처 표시, 비영리, 같은 조건으로만 배포).
+
+Not affiliated with or endorsed by the TACZ team, Mojang or Microsoft.

@@ -1,6 +1,6 @@
 # TaCZ: Charm (총기 참)
 
-**An unofficial add-on for TACZ Refabricated (Fabric 1.21.1).**
+**An unofficial add-on for TACZ. Builds for Fabric 1.21.1, Forge 1.20.1 and NeoForge 1.21.1.**
 Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your rifle and watch it swing.
 
 > 한국어 설명은 아래에 있어요.
@@ -15,9 +15,13 @@ Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your
 - Charms are cosmetic: no stat changes
 
 ## Requirements
-- Fabric Loader 0.16+, Minecraft 1.21.1
-- [Fabric API](https://modrinth.com/mod/fabric-api)
-- TACZ Refabricated
+| Loader | Minecraft | Also needs |
+|---|---|---|
+| Fabric 0.16+ | 1.21.1 | [Fabric API](https://modrinth.com/mod/fabric-api), TACZ Refabricated |
+| Forge 47+ | 1.20.1 | Timeless and Classics Zero (TACZ) 1.1.8 |
+| NeoForge 21.1+ | 1.21.1 | [UNOFFICIAL] TaCZ NeoForge Port 1.1.8 |
+
+- Use the jar that matches your loader (`+forge-1.20.1`, `+neoforge-1.21.1`, or the plain Fabric jar).
 - **Install on both server and client** (the attachment slot list must match)
 
 ## Notes
@@ -29,7 +33,7 @@ Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your
 
 ## 한국어
 
-**TACZ Refabricated(패브릭 1.21.1) 비공식 애드온입니다.**
+**TACZ 비공식 애드온입니다. 패브릭 1.21.1 · 포지 1.20.1 · 네오포지 1.21.1 버전이 있습니다.**
 TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총에 참을 달면 움직일 때마다 흔들립니다.
 
 ### 기능
@@ -42,8 +46,10 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 - 꾸미기 전용: 총 성능은 안 바뀝니다
 
 ### 필요한 것
-- 패브릭 로더 0.16 이상, 마인크래프트 1.21.1
-- Fabric API, TACZ Refabricated
+- 패브릭 1.21.1: 패브릭 로더 0.16 이상, Fabric API, TACZ Refabricated
+- 포지 1.20.1: 포지 47 이상, TACZ(Timeless and Classics Zero) 1.1.8
+- 네오포지 1.21.1: 네오포지 21.1 이상, [UNOFFICIAL] TaCZ NeoForge Port 1.1.8
+- 로더에 맞는 jar를 쓰세요 (`+forge-1.20.1`, `+neoforge-1.21.1`, 표시 없는 것 = 패브릭)
 - **서버와 클라이언트 둘 다 설치** (부착물 칸 목록이 같아야 함)
 
 ### 참고
@@ -56,8 +62,15 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 
 ## Building from source
 
-1. Put `tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar` (from the TaCZ: Refabricated Modrinth page) in `libs/`.
-2. Run `gradlew build` (Java 21). The jar is written to `build/libs/`.
+All builds need Java 21 and the matching TACZ jar in `libs/` (download it yourself from its mod page).
+
+| Build | Folder | TACZ jar in `libs/` | Command |
+|---|---|---|---|
+| Fabric 1.21.1 | repo root | `tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar` | `gradlew build` |
+| Forge 1.20.1 | `forge-1.20.1/` | `tacz-1.20.1-1.1.8-hotfix-all.jar` | `cd forge-1.20.1` then `gradlew build` |
+| NeoForge 1.21.1 | `neoforge-1.21.1/` | `tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar` | `cd neoforge-1.21.1` then `gradlew build` |
+
+Jars are written to each folder's `build/libs/`. All three share the charm pack in `pack/`.
 
 ## Models
 

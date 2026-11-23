@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.markwarfare.charm.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AttachmentTypeMixin",
+    "AttachmentTypeInvoker",
+    "AbstractGunItemMixin",
+    "CommonAssetsManagerMixin"
+  ],
+  "client": [
+    "client.AttachmentRenderMixin",
+    "client.BedrockAnimatedModelMixin",
+    "client.BedrockGunModelRailMixin",
+    "client.BedrockModelMixin",
+    "client.GunAttachmentSlotMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "GPL-3.0-only AND CC-BY-NC-SA-4.0"
+
+[[mods]]
+modId = "taczcharm"
+version = "${version}"
+displayName = "TaCZ: Charm"
+authors = "ToMoNo403"
+logoFile = "assets/taczcharm/icon.png"
+description = '''
+Adds a Charm attachment slot to TACZ guns, with swinging keychain charms.
+TACZ 총에 참(키링) 부착물 칸을 넣습니다.
+'''
+
+[[mixins]]
+config = "taczcharm.mixins.json"
+
+[[dependencies.taczcharm]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.taczcharm]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.taczcharm]]
+modId = "tacz"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

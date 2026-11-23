@@ -1,0 +1,47 @@
+// TaczCharm: NeoForge 1.21.1 addon for TACZ (TaCZ NeoForge Port) that adds a charm attachment slot.
+plugins {
+    id 'dev.architectury.loom' version '1.17.493'
+}
+
+version = project.mod_version + '+neoforge-1.21.1'
+group = 'com.markwarfare'
+
+base {
+    archivesName = 'TaczCharm'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+repositories {
+    maven { url = 'https://maven.neoforged.net/releases/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    neoForge "net.neoforged:neoforge:${project.neoforge_version}"
+    modCompileOnly files('../libs/tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filteringCharset = 'UTF-8'
+    // Bundle the charm gun pack; CharmPackExport extracts it to tacz/taczcharm on startup.
+    from('../pack/taczcharm') {
+        into 'taczcharm_pack'
+    }
+    from('..') {
+        include 'LICENSE', 'LICENSE-ASSETS', 'COPYRIGHT.txt'
+    }
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand 'version': project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}

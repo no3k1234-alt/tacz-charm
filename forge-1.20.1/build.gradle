@@ -1,0 +1,63 @@
+// TaczCharm: Forge 1.20.1 addon for TACZ (Timeless and Classics Zero) that adds a charm attachment slot.
+plugins {
+    id 'dev.architectury.loom' version '1.17.493'
+}
+
+version = project.mod_version + '+forge-1.20.1'
+group = 'com.markwarfare'
+
+base {
+    archivesName = 'TaczCharm'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+loom {
+    forge {
+        mixinConfig 'taczcharm.mixins.json'
+    }
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = 'taczcharm.refmap.json'
+    }
+}
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net/' }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    forge "net.minecraftforge:forge:${project.forge_version}"
+    modCompileOnly files('../libs/tacz-1.20.1-1.1.8-hotfix-all.jar')
+    compileOnly annotationProcessor('io.github.llamalad7:mixinextras-common:0.4.1')
+    include implementation('io.github.llamalad7:mixinextras-forge:0.4.1')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filteringCharset = 'UTF-8'
+    // Bundle the charm gun pack; CharmPackExport extracts it to tacz/taczcharm on startup.
+    from('../pack/taczcharm') {
+        into 'taczcharm_pack'
+        // The shared pack declares 1.21.1; this build is for 1.20.1.
+        filesMatching('gunpack.meta.json') {
+            filter { String line -> line.replace('[1.21.1]', '[1.20.1]') }
+        }
+    }
+    from('..') {
+        include 'LICENSE', 'LICENSE-ASSETS', 'COPYRIGHT.txt'
+    }
+    filesMatching('META-INF/mods.toml') {
+        expand 'version': project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}

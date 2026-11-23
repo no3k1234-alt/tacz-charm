@@ -1,4 +1,4 @@
-총기 참 (TaczCharm) — TACZ 총에 다는 참(키링) 부착물 애드온 (패브릭 1.21.1)
+총기 참 (TaczCharm) — TACZ 총에 다는 참(키링) 부착물 애드온 (패브릭 1.21.1 · 포지 1.20.1 · 네오포지 1.21.1)
 Copyright (C) 2026 ToMoNo403(지나가는잉여)
 
 This program is free software: you can redistribute it and/or modify

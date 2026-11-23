@@ -15,5 +15,12 @@
   "taczcharm.editor.rail_value": "Along rail %s",
   "taczcharm.editor.rail_keys": "←→ · Shift = fine",
   "taczcharm.editor.value": "Fwd %s  Up %s  Out %s",
-  "taczcharm.editor.keys": "Arrows · PgUp/PgDn · Shift = fine"
+  "taczcharm.editor.keys": "Arrows · PgUp/PgDn · Shift = fine",
+  "taczcharm.editor.shorter": "Shorter",
+  "taczcharm.editor.longer": "Longer",
+  "taczcharm.editor.length": "Chain: %s  ([ ] keys)",
+  "taczcharm.editor.length_0": "Short",
+  "taczcharm.editor.length_1": "Normal",
+  "taczcharm.editor.length_2": "Long",
+  "taczcharm.editor.length_none": "No charm attached"
 }

@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.dogtag_long",
+  "display": "taczcharm:dogtag_long_display",
+  "data": "taczcharm:dogtag_long_data",
+  "type": "charm",
+  "sort": 7,
+  "hidden": true
+}

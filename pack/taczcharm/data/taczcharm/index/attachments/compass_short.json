@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.compass_short",
+  "display": "taczcharm:compass_short_display",
+  "data": "taczcharm:compass_short_data",
+  "type": "charm",
+  "sort": 18,
+  "hidden": true
+}

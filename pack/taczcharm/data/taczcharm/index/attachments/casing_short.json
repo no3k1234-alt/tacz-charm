@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.casing_short",
+  "display": "taczcharm:casing_short_display",
+  "data": "taczcharm:casing_short_data",
+  "type": "charm",
+  "sort": 15,
+  "hidden": true
+}

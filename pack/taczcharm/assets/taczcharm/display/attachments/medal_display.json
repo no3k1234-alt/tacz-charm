@@ -1,0 +1,5 @@
+{
+  "slot": "taczcharm:attachment/slot/medal",
+  "model": "taczcharm:attachment/medal_geo",
+  "texture": "taczcharm:attachment/uv/medal"
+}

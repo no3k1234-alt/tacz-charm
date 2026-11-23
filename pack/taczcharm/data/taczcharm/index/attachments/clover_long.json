@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.clover_long",
+  "display": "taczcharm:clover_long_display",
+  "data": "taczcharm:clover_long_data",
+  "type": "charm",
+  "sort": 25,
+  "hidden": true
+}

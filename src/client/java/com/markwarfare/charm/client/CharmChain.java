@@ -583,6 +583,14 @@ public final class CharmChain {
         }
     }
 
+    // Extra gravity on the ornament only (model axes, px/s²), set each frame by CharmPhysics.
+    // The chain keeps its motion; the heavy ornament just settles lower instead of floating out with the swing.
+    private final Vector3d tagPull = new Vector3d();
+
+    public void setTagPull(Vector3d pull) {
+        tagPull.set(pull);
+    }
+
     /** Advances one step of h seconds. acc is the pull on the chain (gravity plus gun motion), in model axes, px/s². */
     public void step(Vector3d acc, double h) {
         int n = pts.length - 1;
@@ -606,6 +614,9 @@ public final class CharmChain {
             before[i].set(p);
             prev[i].set(p);
             p.add(v).fma(h * h, acc);
+            if (i == n && n > 1) {
+                p.fma(h * h, tagPull);
+            }
         }
         java.util.Arrays.fill(contactD, 0);
         java.util.Arrays.fill(pushUsed, 0);
@@ -650,6 +661,9 @@ public final class CharmChain {
         for (int i = 1; i <= n; i++) {
             keNew += mass[i] * new Vector3d(pts[i]).sub(prev[i]).lengthSquared() / (h * h) * 0.5;
             work += mass[i] * acc.dot(new Vector3d(pts[i]).sub(before[i]));
+            if (i == n && n > 1) {
+                work += mass[i] * tagPull.dot(new Vector3d(pts[i]).sub(before[i]));
+            }
         }
         // When collision lifts the chain against the pull (negative work), carry the deficit as debt and pay it
         // from later steps. This breaks a loop where a tag resting on the gun got lifted for free, fell, and

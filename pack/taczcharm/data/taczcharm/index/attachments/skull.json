@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.skull",
+  "display": "taczcharm:skull_display",
+  "data": "taczcharm:skull_data",
+  "type": "charm",
+  "sort": 26
+}

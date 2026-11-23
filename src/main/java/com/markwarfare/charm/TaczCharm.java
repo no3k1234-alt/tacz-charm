@@ -60,6 +60,7 @@ public final class TaczCharm implements ModInitializer {
     public void onInitialize() {
         LOG.info("참 칸 추가됨: {} (번호 {})", charm().getSerializedName(), charm().ordinal());
         CharmPackExport.run();
+        CharmLengthSwap.register();
         // Creative tab listing every charm in the loaded gun packs. Updates when packs are reloaded.
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(MOD_ID, "charms"),
                 FabricItemGroup.builder()

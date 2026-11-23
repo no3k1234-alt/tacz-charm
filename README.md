@@ -7,7 +7,8 @@ Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your
 
 ## Features
 - New **Charm** slot in the gun refit screen (next to scope, muzzle, grip…)
-- 4 charms: **MF Tag, Marine Dog Tags, Cross, Shell Casing**
+- 10 charms: **MF Tag, Marine Dog Tags, Cross, Shell Casing, Compass, Dice, Four-Leaf Clover, Skull, Star Medal, Creeper Head**
+- Three chain lengths per charm (short / normal / long), switched in the `/charmpos` editor or with the `[` `]` keys
 - Charms hang from a small rail mount and **swing with physics**: chain links, weight, collisions with the gun body, the ring sliding around the mount
 - The mount sits on the scope rail, so charms fit **only guns that can take a scope**. Guns from other gun packs get a charm spot placed automatically
 - Per-gun position tweak with `/charmpos` (or `/참위치`): an in-game editor with buttons and arrow keys
@@ -33,7 +34,8 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 
 ### 기능
 - 개조 화면에 **참** 칸이 추가됩니다 (조준경·총구·손잡이 칸 옆)
-- 참 4종: **MF 태그, 해병대 군번줄, 십자가, 탄피**
+- 참 10종: **MF 태그, 해병대 군번줄, 십자가, 탄피, 나침반, 주사위, 네잎클로버, 해골, 별 메달, 크리퍼 머리**
+- 참마다 줄 길이 3가지(짧은 줄·보통·긴 줄), `/참위치` 편집 창 버튼이나 `[` `]` 키로 바꿈
 - 레일에 다는 작은 마운트에 매달려 **물리적으로 흔들립니다**: 사슬 마디·무게, 총몸 충돌, 마운트 고리를 따라 미끄러지는 고리
 - 마운트가 조준경 레일에 붙기 때문에 **조준경을 달 수 있는 총에만** 달 수 있으며. 다른 총 팩의 총은 자동으로 자리를 잡아 줍니다
 - 총마다 `/참위치`(영어 `/charmpos`) 명령어로 위치 조정 (버튼·방향키 편집 창)

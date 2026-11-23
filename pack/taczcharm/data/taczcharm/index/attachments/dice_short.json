@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.dice_short",
+  "display": "taczcharm:dice_short_display",
+  "data": "taczcharm:dice_short_data",
+  "type": "charm",
+  "sort": 21,
+  "hidden": true
+}

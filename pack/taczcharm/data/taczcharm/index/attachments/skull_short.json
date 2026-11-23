@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.skull_short",
+  "display": "taczcharm:skull_short_display",
+  "data": "taczcharm:skull_short_data",
+  "type": "charm",
+  "sort": 27,
+  "hidden": true
+}

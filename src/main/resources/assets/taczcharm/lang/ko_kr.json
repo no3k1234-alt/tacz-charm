@@ -15,5 +15,12 @@
   "taczcharm.editor.rail_value": "레일 앞뒤 %s",
   "taczcharm.editor.rail_keys": "←→ · Shift = 조금씩",
   "taczcharm.editor.value": "앞 %s  위 %s  바깥 %s",
-  "taczcharm.editor.keys": "방향키 · PgUp/PgDn · Shift = 조금씩"
+  "taczcharm.editor.keys": "방향키 · PgUp/PgDn · Shift = 조금씩",
+  "taczcharm.editor.shorter": "줄 짧게",
+  "taczcharm.editor.longer": "줄 길게",
+  "taczcharm.editor.length": "줄 길이: %s  ([ ] 키)",
+  "taczcharm.editor.length_0": "짧은 줄",
+  "taczcharm.editor.length_1": "보통",
+  "taczcharm.editor.length_2": "긴 줄",
+  "taczcharm.editor.length_none": "참이 안 달려 있어요"
 }

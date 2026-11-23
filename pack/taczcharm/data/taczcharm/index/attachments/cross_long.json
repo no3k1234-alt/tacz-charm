@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.cross_long",
+  "display": "taczcharm:cross_long_display",
+  "data": "taczcharm:cross_long_data",
+  "type": "charm",
+  "sort": 13,
+  "hidden": true
+}

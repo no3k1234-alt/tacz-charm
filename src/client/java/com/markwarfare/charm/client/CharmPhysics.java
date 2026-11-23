@@ -49,6 +49,8 @@ public final class CharmPhysics {
     // Max component toward the gun body (screen right). Beyond this the segment is pushed back out.
     private static final double MAX_INWARD = 0.2;
     private static final double GRAVITY = 9.8;
+    // Extra gravity on the ornament, as a multiple of normal gravity (1.5 = 2.5x total).
+    private static final double TAG_GRAVITY = 1.5;
     private static final int MAX_SEGMENTS = 8;
 
     // Guns with a charm mount use CharmChain, which collides against the actual model geometry.
@@ -245,6 +247,8 @@ public final class CharmPhysics {
             Vector3d accView = new Vector3d(gravity).sub(new Vector3d(smoothAcc).mul(ACCEL_GAIN)).add(turnAcc);
             accView.y -= bounce * ACCEL_GAIN;
             Vector3d accModel = toModel(accView).mul(PX_ACCEL);
+            // Ornament weight: extra gravity on the last point only, so it hangs lower without stiffening the chain.
+            LIVE.setTagPull(toModel(new Vector3d(gravity)).mul(PX_ACCEL * TAG_GRAVITY));
             for (int s = 0; s < steps; s++) {
                 LIVE.step(accModel, h);
             }

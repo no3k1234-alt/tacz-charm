@@ -54,6 +54,12 @@ public final class CharmEditScreen extends Screen {
             addRow(x, y + ROW_H * 2, "in", "out", 2);
         }
         int bw = (PANEL_W - 20) / 2;
+        // Chain length: swaps the charm on the held gun for its shorter/longer version (server side).
+        addRenderableWidget(Button.builder(Component.literal("◀ ").append(Component.translatable("taczcharm.editor.shorter")),
+                b -> swapLength(-1)).bounds(x, y + ROW_H * 3, bw, 18).build());
+        addRenderableWidget(Button.builder(Component.translatable("taczcharm.editor.longer").append(" ▶"),
+                b -> swapLength(1)).bounds(x + bw + 4, y + ROW_H * 3, bw, 18).build());
+        y += ROW_H;
         addRenderableWidget(Button.builder(Component.translatable("taczcharm.editor.reset"), b -> {
             CharmOffsets.reset(key);
             float[] o = CharmOffsets.get(key);
@@ -63,6 +69,30 @@ public final class CharmEditScreen extends Screen {
         }).bounds(x, y + ROW_H * 3 + 8, bw, 18).build());
         addRenderableWidget(Button.builder(Component.translatable("taczcharm.editor.done"), b -> onClose())
                 .bounds(x + bw + 4, y + ROW_H * 3 + 8, bw, 18).build());
+    }
+
+    private static void swapLength(int step) {
+        if (net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(com.markwarfare.charm.CharmLengthSwap.Payload.TYPE)) {
+            net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(new com.markwarfare.charm.CharmLengthSwap.Payload(step));
+        }
+    }
+
+    /** Length of the charm on the held gun: 0 short, 1 normal, 2 long, -1 no charm. */
+    private static int heldLength() {
+        net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+        if (mc.player == null) {
+            return -1;
+        }
+        net.minecraft.world.item.ItemStack gun = mc.player.getMainHandItem();
+        com.tacz.guns.api.item.IGun iGun = com.tacz.guns.api.item.IGun.getIGunOrNull(gun);
+        if (iGun == null) {
+            return -1;
+        }
+        net.minecraft.resources.ResourceLocation id = iGun.getAttachmentId(gun, com.markwarfare.charm.TaczCharm.charm());
+        if (id == null || com.tacz.guns.api.DefaultAssets.isEmptyAttachmentId(id)) {
+            return -1;
+        }
+        return com.markwarfare.charm.CharmLengthSwap.lengthOf(id);
     }
 
     private void addRow(int x, int y, String minus, String plus, int axis) {
@@ -108,6 +138,8 @@ public final class CharmEditScreen extends Screen {
             case GLFW.GLFW_KEY_DOWN -> nudge(1, -step());
             case GLFW.GLFW_KEY_PAGE_UP -> nudge(2, step());
             case GLFW.GLFW_KEY_PAGE_DOWN -> nudge(2, -step());
+            case GLFW.GLFW_KEY_LEFT_BRACKET -> swapLength(-1);
+            case GLFW.GLFW_KEY_RIGHT_BRACKET -> swapLength(1);
             default -> {
                 return super.keyPressed(keyCode, scanCode, modifiers);
             }
@@ -128,7 +160,11 @@ public final class CharmEditScreen extends Screen {
         graphics.drawCenteredString(font, title, cx, y + 7, 0xFFFFFF);
         graphics.drawCenteredString(font, font.plainSubstrByWidth(gunName, PANEL_W), cx, y + 19, 0xA0A0A0);
         super.render(graphics, mouseX, mouseY, partialTick);
-        int ty = y + 34 + ROW_H * 3 + 32;
+        int ty = y + 34 + ROW_H * 4 + 32;
+        int len = heldLength();
+        graphics.drawCenteredString(font, len < 0 ? Component.translatable("taczcharm.editor.length_none")
+                : Component.translatable("taczcharm.editor.length", Component.translatable("taczcharm.editor.length_" + len)),
+                cx, ty + 22, 0xFFFFFF);
         if (mount) {
             graphics.drawCenteredString(font, Component.translatable("taczcharm.editor.rail_value",
                     String.format("%.1f", forward)), cx, ty, 0xFFFFFF);

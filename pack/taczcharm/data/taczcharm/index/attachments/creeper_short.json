@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.creeper_short",
+  "display": "taczcharm:creeper_short_display",
+  "data": "taczcharm:creeper_short_data",
+  "type": "charm",
+  "sort": 33,
+  "hidden": true
+}

@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.compass",
+  "display": "taczcharm:compass_display",
+  "data": "taczcharm:compass_data",
+  "type": "charm",
+  "sort": 17
+}

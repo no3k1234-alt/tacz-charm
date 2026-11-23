@@ -1,0 +1,5 @@
+{
+  "slot": "taczcharm:attachment/slot/dice",
+  "model": "taczcharm:attachment/dice_geo",
+  "texture": "taczcharm:attachment/uv/dice"
+}

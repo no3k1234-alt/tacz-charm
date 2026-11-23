@@ -1,0 +1,5 @@
+{
+  "slot": "taczcharm:attachment/slot/compass",
+  "model": "taczcharm:attachment/compass_short_geo",
+  "texture": "taczcharm:attachment/uv/compass"
+}

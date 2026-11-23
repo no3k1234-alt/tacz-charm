@@ -1,0 +1,7 @@
+{
+  "name": "taczcharm.attachment.creeper",
+  "display": "taczcharm:creeper_display",
+  "data": "taczcharm:creeper_data",
+  "type": "charm",
+  "sort": 32
+}

@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.medal_short",
+  "display": "taczcharm:medal_short_display",
+  "data": "taczcharm:medal_short_data",
+  "type": "charm",
+  "sort": 30,
+  "hidden": true
+}

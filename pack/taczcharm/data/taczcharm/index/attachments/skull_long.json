@@ -1,0 +1,8 @@
+{
+  "name": "taczcharm.attachment.skull_long",
+  "display": "taczcharm:skull_long_display",
+  "data": "taczcharm:skull_long_data",
+  "type": "charm",
+  "sort": 28,
+  "hidden": true
+}

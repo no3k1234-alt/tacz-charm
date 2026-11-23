@@ -351,7 +351,7 @@ public final class CharmChain {
             }
         }
         ringRaw = new Ring(new Vector3d(cx, cy, cz), r, wz, true);
-        TaczCharm.LOG.info("참 마운트 고리 잼: 가운데 ({}, {}, {}) 안쪽 반지름 {} 테 앞뒤 {}",
+        TaczCharm.LOG.debug("참 마운트 고리 잼: 가운데 ({}, {}, {}) 안쪽 반지름 {} 테 앞뒤 {}",
                 fmt(cx), fmt(cy), fmt(cz), fmt(r), fmt(wz));
         return ringRaw;
     }
@@ -489,20 +489,12 @@ public final class CharmChain {
         return ready && charm != null;
     }
 
-    public void invalidate() {
-        ready = false;
-    }
-
     public Vector3d attach() {
         return attach;
     }
 
     public Charm charm() {
         return charm;
-    }
-
-    public double ringRadius() {
-        return ringR;
     }
 
     public Vector3d point(int i) {
@@ -964,28 +956,6 @@ public final class CharmChain {
             }
         }
         return worst;
-    }
-
-    /** Debug: bone names and bounds of gun cubes within 0.05 px of any charm box. */
-    public String touching() {
-        StringBuilder sb = new StringBuilder();
-        java.util.Set<Obb> seen = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
-        int n = pts.length - 1;
-        for (int i = 0; i < n; i++) {
-            Matrix3d q = orientation(pts[i], pts[i + 1], i);
-            for (Obb local : charm.boxes.get(i)) {
-                Obb now = local.transformed(pts[i], q);
-                Obb grown = new Obb(now.c(), now.r(), new Vector3d(now.h()).add(0.05, 0.05, 0.05), now.name());
-                for (Obb g : wall) {
-                    if (!seen.contains(g) && CharmGeom.depth(grown, g) > 0) {
-                        seen.add(g);
-                        double[] b = CharmGeom.bounds(List.of(g));
-                        sb.append(String.format(" [마디%d %s x %.2f~%.2f y %.2f~%.2f z %.2f~%.2f]", i, g.name(), b[0], b[1], b[2], b[3], b[4], b[5]));
-                    }
-                }
-            }
-        }
-        return sb.toString();
     }
 
     /**

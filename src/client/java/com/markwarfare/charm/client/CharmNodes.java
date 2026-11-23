@@ -67,12 +67,12 @@ public final class CharmNodes {
                 bones.add(bone(RAIL_FAR, parent, new float[]{rail[3], rail[1], rail[2]}, null));
                 bones.add(bone(MOUNT_SCALE, parent, new float[]{rail[4], 0, 0}, null));
                 if (logged < 400) {
-                    com.markwarfare.charm.TaczCharm.LOG.info("참 마운트 레일: 폭 {} ({} ~ {}), 앞뒤 {}, 조준경 {}",
+                    com.markwarfare.charm.TaczCharm.LOG.debug("참 마운트 레일: 폭 {} ({} ~ {}), 앞뒤 {}, 조준경 {}",
                             (rail[0] - MOUNT_RING_OUT * rail[4]) - rail[3], rail[3], rail[0] - MOUNT_RING_OUT * rail[4], rail[2], scopeBone.getPivot());
                 }
             }
             if (logged++ < 400) {
-                com.markwarfare.charm.TaczCharm.LOG.info("참 자리 넣음: 뼈 {}개, 부모 {}, 자리 {}, {}, {}",
+                com.markwarfare.charm.TaczCharm.LOG.debug("참 자리 넣음: 뼈 {}개, 부모 {}, 자리 {}, {}, {}",
                         bones.size(), parent, charm[0], charm[1], charm[2]);
             }
         }
@@ -89,8 +89,6 @@ public final class CharmNodes {
     // rail's +x edge out to the ring hole.
     public static final float MOUNT_BAR_BOTTOM = 0.18f;
     public static final float MOUNT_RING_OUT = 0.4f;
-    // How far behind scope_pos, toward the stock (px).
-    public static final float MOUNT_BEHIND_SCOPE = 1.0f;
 
     // The charm hangs from a ring on a "charm mount" clamped across the top rail, just behind the scope.
     // Returns {ringX, ringY, z, farEdgeX, scale}, or null when there is no scope_pos (falls back to charmPivot).
@@ -347,7 +345,7 @@ public final class CharmNodes {
         float surface = surfaceX(byName, y, z);
         float x = Float.isNaN(surface) ? 1.5f : surface + 0.05f;
         bones.add(bone(POS, parent, new float[]{x, y, z}, null));
-        com.markwarfare.charm.TaczCharm.LOG.info("참 자리 넣음(부착물 자리 없는 총): 부모 {}, 자리 {}, {}, {}", parent, x, y, z);
+        com.markwarfare.charm.TaczCharm.LOG.debug("참 자리 넣음(부착물 자리 없는 총): 부모 {}, 자리 {}, {}, {}", parent, x, y, z);
         if (!byName.containsKey(VIEW) && byName.get("refit_view") != null && byName.get("refit_view").getPivot() != null) {
             BonesItem view = byName.get("refit_view");
             bones.add(bone(VIEW, view.getParent(), toArray(view.getPivot()), view.getRotation()));

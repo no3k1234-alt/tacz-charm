@@ -77,10 +77,6 @@ public final class CharmPhysics {
         return LIVE.attach();
     }
 
-    public static String dump() {
-        return LIVE.dump();
-    }
-
     // Screen axes (right, up, back) to model axes. Model x points to screen left.
     private static Vector3d toModel(Vector3d v) {
         return new Vector3d(-v.x, v.y, v.z);

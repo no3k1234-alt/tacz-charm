@@ -497,10 +497,6 @@ public final class CharmChain {
         return charm;
     }
 
-    public Vector3d point(int i) {
-        return pts[i];
-    }
-
     public int count() {
         return charm == null ? 0 : charm.segments();
     }
@@ -936,7 +932,7 @@ public final class CharmChain {
         }
     }
 
-    /** Deepest penetration of any charm box into a gun cube, in px. 0 means no contact. Used by automated tests. */
+    /** Deepest penetration of any charm box into a gun cube, in px. 0 means no contact. */
     public double penetration() {
         double worst = 0;
         int n = pts.length - 1;
@@ -981,14 +977,6 @@ public final class CharmChain {
             }
             parentAbs = abs;
         }
-    }
-
-    public String dump() {
-        StringBuilder sb = new StringBuilder(String.format("꿰임 반지름 %.3f 앞뒤 %.3f 점:", ringR, zSlack));
-        for (Vector3d p : pts) {
-            sb.append(String.format(" (%.2f, %.2f, %.2f)", p.x, p.y, p.z));
-        }
-        return sb.toString();
     }
 
     static String fmt(double v) {

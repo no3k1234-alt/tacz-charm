@@ -18,8 +18,8 @@ Adds a new **Charm** attachment slot to TACZ guns. Hang a keychain charm on your
 | Loader | Minecraft | Also needs |
 |---|---|---|
 | Fabric 0.16+ | 1.21.1 | [Fabric API](https://modrinth.com/mod/fabric-api), TACZ Refabricated |
-| Forge 47+ | 1.20.1 | Timeless and Classics Zero (TACZ) 1.1.8 |
-| NeoForge 21.1+ | 1.21.1 | [UNOFFICIAL] TaCZ NeoForge Port 1.1.8 |
+| Forge 47+ | 1.20.1 | Timeless and Classics Zero (TACZ) 1.2.0+ |
+| NeoForge 21.1+ | 1.21.1 | Timeless and Classics Zero (TACZ) 1.2.0+ |
 
 - Use the jar that matches your loader (`+forge-1.20.1`, `+neoforge-1.21.1`, or the plain Fabric jar).
 - **Install on both server and client** (the attachment slot list must match)
@@ -47,8 +47,8 @@ TACZ 총의 부착물 칸에 **참(키링)** 칸을 하나 더 넣습니다. 총
 
 ### 필요한 것
 - 패브릭 1.21.1: 패브릭 로더 0.16 이상, Fabric API, TACZ Refabricated
-- 포지 1.20.1: 포지 47 이상, TACZ(Timeless and Classics Zero) 1.1.8
-- 네오포지 1.21.1: 네오포지 21.1 이상, [UNOFFICIAL] TaCZ NeoForge Port 1.1.8
+- 포지 1.20.1: 포지 47 이상, TACZ(Timeless and Classics Zero) 1.2.0 이상
+- 네오포지 1.21.1: 네오포지 21.1 이상, TACZ(Timeless and Classics Zero) 1.2.0 이상
 - 로더에 맞는 jar를 쓰세요 (`+forge-1.20.1`, `+neoforge-1.21.1`, 표시 없는 것 = 패브릭)
 - **서버와 클라이언트 둘 다 설치** (부착물 칸 목록이 같아야 함)
 
@@ -67,8 +67,8 @@ All builds need Java 21 and the matching TACZ jar in `libs/` (download it yourse
 | Build | Folder | TACZ jar in `libs/` | Command |
 |---|---|---|---|
 | Fabric 1.21.1 | repo root | `tacz-refabricated-1.0.1-neo1.2.0-hotfix+mc1.21.1.jar` | `gradlew build` |
-| Forge 1.20.1 | `forge-1.20.1/` | `tacz-1.20.1-1.1.8-hotfix-all.jar` | `cd forge-1.20.1` then `gradlew build` |
-| NeoForge 1.21.1 | `neoforge-1.21.1/` | `tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar` | `cd neoforge-1.21.1` then `gradlew build` |
+| Forge 1.20.1 | `forge-1.20.1/` | `tacz-forge-1.20.1-1.2.0-hotfix.jar` | `cd forge-1.20.1` then `gradlew build` |
+| NeoForge 1.21.1 | `neoforge-1.21.1/` | `tacz-neoforge-1.21.1-1.2.0-hotfix.jar` | `cd neoforge-1.21.1` then `gradlew build` |
 
 Jars are written to each folder's `build/libs/`. All three share the charm pack in `pack/`.
 

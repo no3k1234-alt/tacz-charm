@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.client.model.functional.AttachmentRender;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,8 +34,9 @@ public abstract class AttachmentRenderMixin {
     @Final
     private BedrockGunModel bedrockGunModel;
 
+    // Only the 6-argument render; the 5-argument overload delegates to it (TACZ 1.2.0+).
     @Unique
-    private static final String RENDER = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/item/ItemDisplayContext;II)V";
+    private static final String RENDER6 = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/item/ItemDisplayContext;IILnet/minecraft/client/renderer/MultiBufferSource;)V";
 
     @Unique
     private boolean taczcharm$pushed;
@@ -72,9 +74,9 @@ public abstract class AttachmentRenderMixin {
         return boxes;
     }
 
-    @Inject(method = RENDER, at = @At("HEAD"))
+    @Inject(method = RENDER6, at = @At("HEAD"))
     private void taczcharm$swingStart(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType,
-                                      int light, int overlay, CallbackInfo ci) {
+                                      int light, int overlay, MultiBufferSource bufferSource, CallbackInfo ci) {
         this.taczcharm$pushed = false;
         if (!TaczCharm.isCharm(this.type)) {
             return;
@@ -108,6 +110,7 @@ public abstract class AttachmentRenderMixin {
             final org.joml.Matrix4f mPose = new org.joml.Matrix4f(poseStack.last().pose());
             final org.joml.Matrix3f mNormal = new org.joml.Matrix3f(poseStack.last().normal());
             final net.minecraft.world.item.ItemStack gunItem = this.bedrockGunModel.getCurrentGunItem();
+            final AttachmentType charmType = this.type;
             // Mount scale is rail width / 1.8 (see CharmNodes.mountScale). Scaling uniformly about the
             // ring hole at the origin makes the mount fit the rail exactly.
             com.tacz.guns.client.resource.pojo.model.BonesItem scaleBone = this.bedrockGunModel.getBone(com.markwarfare.charm.client.CharmNodes.MOUNT_SCALE);
@@ -124,7 +127,7 @@ public abstract class AttachmentRenderMixin {
                         float r = com.markwarfare.charm.client.CharmNodes.RING_SIZE;
                         p2.scale(r, r, r);
                     }
-                    AttachmentRender.renderAttachment(TaczCharm.mountStack(part), gunItem, p2, transformType, light, overlay);
+                    AttachmentRender.renderAttachment(TaczCharm.mountStack(part), gunItem, charmType, p2, transformType, light, overlay, bufferSource);
                 }
             });
         }
@@ -145,9 +148,9 @@ public abstract class AttachmentRenderMixin {
         }
     }
 
-    @Inject(method = RENDER, at = @At("RETURN"))
+    @Inject(method = RENDER6, at = @At("RETURN"))
     private void taczcharm$swingEnd(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType,
-                                    int light, int overlay, CallbackInfo ci) {
+                                    int light, int overlay, MultiBufferSource bufferSource, CallbackInfo ci) {
         if (this.taczcharm$pushed) {
             poseStack.popPose();
             this.taczcharm$pushed = false;

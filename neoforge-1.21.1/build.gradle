@@ -23,7 +23,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
     neoForge "net.neoforged:neoforge:${project.neoforge_version}"
-    modCompileOnly files('../libs/tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar')
+    modCompileOnly files('../libs/tacz-neoforge-1.21.1-1.2.0-hotfix.jar')
 }
 
 processResources {

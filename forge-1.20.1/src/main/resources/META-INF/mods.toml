@@ -30,6 +30,6 @@ side = "BOTH"
 [[dependencies.taczcharm]]
 modId = "tacz"
 mandatory = true
-versionRange = "*"
+versionRange = "[1.2.0,)"
 ordering = "AFTER"
 side = "BOTH"
